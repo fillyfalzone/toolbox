@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Density Words</title>
+    <!--CDN css bootstrap-->
+    <link rel="stylesheet" href="https://bootswatch.com/5/spacelab/bootstrap.css">
+</head>
+<body>
+    
+    <section class="container">
+        <h1 class="text text-center text-primary mb-3">Density Words</h1>
+        <form id="form">
+            <div class="mb-3">
+                <label for="projectName" class="form-label">Nom du projet</label>
+                <input type="email" name="projectName" class="projectName form-control" id="projectName" placeholder="Finance...">
+              </div>
+              <div class="mb-3">
+                <label for="textAera" class="form-label">Texte</label>
+                <textarea class="textAera form-control" id="textAera" rows="10" placeholder="Copier le texte à traiter ici..."></textarea>
+              </div>
+          
+              <div class="form-check form-switch">
+                <input class="articles-filter form-check-input" type="checkbox" role="switch" id="articles" name="articles" checked>
+                <label class="form-check-label" for="articles">Filtrer les articles</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" name="conjonctions" type="checkbox" role="switch" id="conjonctions" checked>
+                <label class="conj-coord-filter form-check-label" for="conjonctions">Filtrer les conjonctions</label>
+              </div>
+          
+              <div class="form-check form-switch">
+                <input class="form-check-input" name="pronoms" type="checkbox" role="switch" id="pronoms" checked>
+                <label class="conj-sub-filter form-check-label" for="pronoms">Filtrer les pronoms</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" name="prepostions" type="checkbox" role="switch" id="prepostions" checked>
+                <label class=" form-check-label" for="prepostions">Filtrer les prépositions</label>
+              </div>
+              <div class="mb-3">
+                <label for="wordSup" class="form-label">Ajout des mots supplémentaires séparés d'un espace.</label>
+                <input type="text" class="form-control" id="wordSup" name="wordSup" placeholder="Ex: mon ton s tout">
+              </div>
+              <div class="mb-3">
+                <label for="ranking" class="form-label">Nombre de mots</label>
+                <input type="number" step="1" min="1" max="2000" required class="form-control" id="ranking" name="ranking" placeholder="Entre 1 et 1000">
+              </div>
+
+                
+                <div class="row text text-center">
+                  <div class="col-12 m-2">
+                    <input class="submit btn btn-primary btn-lg" type="submit" value="Traiter" id="submit">
+                  </div>
+                  <div class="col-12 m-2">
+                    <button type="button" class="formReset btn btn-danger btn-lg" id="formReset">Reset</button>
+                  </div>
+                </div>
+              </div>
+        </form>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <p>Total des mots avant filtrage : <span id="totalWordsBefore" class="text text-primary"></span></p>
+              <p>Total des mots après filtrage : <span id="totalWordsAfter" class="text text-success"></span></p>
+              <p>Nombre de mots et caractères spéciaux filtrés : <span id="totalWordFiltered" class="text text-danger"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="container py-5">
+          <div class="row">
+              <div class="col">
+                  <table class="table table-bordered table-hover table-striped">
+                      <thead class="table-dark">
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Mots</th>
+                              <th scope="col">Occurences</th>
+                              <th scope="col">Densité</th>
+                          </tr>
+                      </thead>
+                      <tbody id="table-body">
+                          <!-- Les lignes du tableau seront ajoutées ici -->
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+<br>
+<br>
+<br>
+<br>
+<br>
+          <p> Bien sûr! Voici un texte de 200 mots qui utilise des prépositions, des pronoms personnels, des pronoms relatifs, des conjonctions de coordination, des   conjonctions de subordination et des caractères spéciaux :
+
+          "Le soleil se levait lentement au-dessus de l'horizon, illuminant le paysage d'une douce lueur dorée. Les oiseaux chantaient joyeusement dans les arbres, tandis que les fleurs s'épanouissaient sous les rayons chauds du soleil. Au milieu de cette scène idyllique, un homme se promenait avec son chien, profitant de la tranquillité de la nature qui l'entourait.
+          
+          Soudain, une brise légère souffla, apportant avec elle le parfum enivrant des fleurs sauvages. L'homme s'arrêta et respira profondément, se sentant connecté à l'univers qui l'entourait. Il se sentait en harmonie avec la nature, comme si chaque élément était lié par une force invisible.
+          
+          Pendant ce temps, dans un petit village voisin, les habitants se préparaient pour la fête annuelle. Les femmes préparaient des plats délicieux, tandis que les hommes décoraient les rues avec des guirlandes colorées. Tout le monde était excité à l'idée de célébrer ensemble.
+          
+          Le soir venu, les gens se rassemblèrent sur la place du village. Les enfants riaient et jouaient, tandis que les adultes discutaient et partageaient des histoires. La musique résonnait dans l'air, créant une atmosphère festive et joyeuse.
+          
+          Finalement, le feu d'artifice commença, illuminant le ciel nocturne de mille couleurs éclatantes. Les étoiles semblaient danser en harmonie avec les explosions de lumière. C'était un spectacle magique qui captivait l'attention de tous.
+          
+          Alors que la nuit avançait, chacun rentra chez soi, le cœur rempli de souvenirs précieux. Ils savaient que cette journée resterait gravée dans leur mémoire pour toujours, un moment de joie et de connexion avec leurs proches et avec la nature.
+          
+          Et ainsi, la vie continuait, avec ses moments simples et ses instants magiques, où les prépositions, les pronoms, les conjonctions et les caractères spéciaux se mêlaient harmonieusement pour former un récit unique et plein de sens."
+          
+          J'espère que ce texte répond à votre demande !</p>
+    </section>
+
+    <!--CDN JS bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--Script js local-->
+    <script src="assets/js/density.js"></script>
+</body>
+</html>
