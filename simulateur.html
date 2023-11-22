@@ -56,32 +56,28 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container"> 
             <div class="row">
-                <div class="col">
-                    <div id="canvas-container">
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-               
                 <form action="#">
                     <div class="row">
-                        <div class="col-8 my-2">
-                            <label for="inputUrl" class="form-label">URL</label>
-                            <textarea name="inputUrl" id="inputUrl" cols="30" rows="3" class="form-control my-1"></textarea>
+                        <h2 class="text-center my-5">SERP SIMULATOR</h2>
+                        <div class="col-6">
+                            <div class="col my-2">
+                                <label for="inputUrl" class="form-label">URL</label>
+                                <textarea name="inputUrl" id="inputUrl" cols="30" rows="2" class="form-control my-1"></textarea>
+                            </div>
+                            <div class="col my-2">
+                                <label for="inputTitle" class="form-label">Title</label>
+                                <textarea name="inputTitle" id="inputTitle" cols="30" rows="2" class="form-control my-1"></textarea>
+                                <p>L’affichage de la balise Title sur Google dépend d’un nombre de pixel, <span class="text-success" id="titlePixelsRemind">500</span> pixels sont disponibles</p>
+                            </div>
+                            <div class="col my-2">
+                                <label for="inputTitle" class="form-label">Méta-description</label>
+                                <textarea name="inputMd" id="inputMd" cols="30" rows="2" class="form-control my-1"></textarea>
+                                <p>L’affichage de la balise Méta-description sur Google dépend d’un nombre de pixel, <span class="text-success"  id="mdPixelsRemind">930</span> pixels sont disponibles</p>
+                            </div>   
                         </div>
-                        <div class="col-8 my-2">
-                            <label for="inputTitle" class="form-label">Title</label>
-                            <textarea name="inputTitle" id="inputTitle" cols="30" rows="3" class="form-control my-1"></textarea>
-                            <p>L’affichage de la balise Title sur Google dépend d’un nombre de pixel, <span class="text-success">500</span> pixels sont disponibles</p>
-                        </div>
-                        <div class="col-8 my-2">
-                            <label for="inputTitle" class="form-label">Méta-description</label>
-                            <textarea name="inputMd" id="inputMd" cols="30" rows="3" class="form-control my-1"></textarea>
-                            <p>L’affichage de la balise Méta-description sur Google dépend d’un nombre de pixel, <span class="text-success">930</span> pixels sont disponibles</p>
-                        </div>   
+                        
                     </div>
                 </form>
             </div>
