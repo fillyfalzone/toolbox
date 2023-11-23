@@ -1,7 +1,15 @@
-
-#canvas-container {
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
-    margin: 20px auto;
+/*Page Simulateur*/
+/* modification de la police*/
+#prev-url{
+    font-size: 14px !important;
+    font-family: arial, sans-serif !important;
+}
+#prev-title{
+    font-size: 20px !important;
+    font-family: arial, sans-serif !important;
+    color: blue !important;
+}
+#prev-url{
+    font-size: 14px !important;
+    font-family: arial, sans-serif !important;
 }

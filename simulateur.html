@@ -63,23 +63,48 @@
                     <form action="#">
                         <div class="row">
                             <h2 class="text-center my-5">SERP SIMULATOR</h2>
-                            <div class="col-6">
-                                <div class="col my-2">
+                            <div class="row">
+                                <div class="col-12 col-lg-7 my-2">
                                     <label for="inputUrl" class="form-label fw-bold">URL</label>
                                     <textarea name="inputUrl" id="inputUrl" cols="30" rows="2" class="form-control my-1"></textarea>
-                                    <p><span class="text-success fw-bold" id="urlPixelsRemind">600</span> pixels disponibles</p>
+                                    <p><span class="text-success fw-bold" id="urlPixelsRemind">385</span> pixels disponibles</p>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col-8 col-md-4">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-12 col-lg-7 my-2">
                                     <label for="inputTitle" class="form-label fw-bold">Title</label>
                                     <textarea name="inputTitle" id="inputTitle" cols="30" rows="2" class="form-control my-1"></textarea>
                                     <p><span class="text-success fw-bold" id="titlePixelsRemind">600</span> pixels disponibles</p>
                                 </div>
-                                <div class="col my-2">
+                                <div class="col-8 col-lg-5">
+                                    <label for="reco-title" class="form-label small">Nos recommandations pour votre titre</label>
+                                    <div class="card">
+                                        <div id="reco-title" class="card-body">
+                                            
+                                            <small id="small-title"><span id="span-title" class="fw-bold">Attention à votre titre:</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                               
+                            <div class="row">
+                                <div class="col-12 col-lg-7 my-2">
                                     <label for="inputTitle" class="form-label fw-bold">Méta-description</label>
                                     <textarea name="inputMd" id="inputMd" cols="30" rows="2" class="form-control my-1"></textarea>
-                                    <p><span class="text-success fw-bold"  id="mdPixelsRemind">920</span> pixels disponibles</p>
+                                    <p><span class="text-success fw-bold"  id="mdPixelsRemind">990</span> pixels disponibles</p>
+                                </div>
+                                <div class="col-8 col-lg-5">
+                                    <label for="reco-meta" class="form-label small">Nos recommandations pour votre méta-description</label>
+                                    <div class="card">
+                                        <div id="reco-meta" class="card-body">
+                                            <small id="small-meta"><span id="span" class="fw-bold small">Attention à votre méta-description:</span></small>
+                                        </div>
+                                    </div>
                                 </div>   
-                            </div>
+                            </div>     
                         </div>
                     </form>
                    
@@ -92,60 +117,84 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <table class="table table-hover table-bordered  text-center my-5">
-                        <thead>
-                          <tr class="table-light">
-                            <th scope="col"></th>
-                            <th scope="col" colspan="3">Caractères</th>
-                            <th scope="col" colspan="3">Pixels</th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <thead>
-                          <tr class="table-info">
-                            <th scope="col">Element</th>
-                            <th scope="col">Longueur</th>
-                            <th scope="col">Affiché</th>
-                            <th scope="col">Tronqué</th>
-                            <th scope="col">Longueur</th>
-                            <th scope="col">Disponible</th>
-                            <th scope="col">Restant</th>
-                            <th scope="col">Statut</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Titre</th>
-                            <td class="title-data">0</td>
-                            <td class="title-data">0</td>
-                            <td class="title-data">0</td>
-                            <td class="title-data">0</td>
-                            <td class="title-data">600</td>
-                            <td class="title-data">600</td>
-                            <td class="title-data">0</td>
-                          </tr>
-                          <tr>
-                            <th>Description</th>
-                            <td class="meta-data">0</td>
-                            <td class="meta-data">0</td>
-                            <td class="meta-data">0</td>
-                            <td class="meta-data">0</td>
-                            <td class="meta-data">920</td>
-                            <td class="meta-data">920</td>
-                            <td class="meta-data">0</td>
-                          </tr>
-                          <tr>
-                            <th>URL</th>
-                            <td class="url-data">0</td>
-                            <td class="url-data">0</td>
-                            <td class="url-data">0</td>
-                            <td class="url-data">0</td>
-                            <td class="url-data">600</td>
-                            <td class="url-data">600</td>
-                            <td class="url-data">0</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div class="col-12 p-0 col-md-6">
+                        <table class="table table-hover table-bordered  text-center my-5">
+                            <thead>
+                              <tr class="table-light">
+                                <th scope="col"></th>
+                                <th scope="col" colspan="3">Caractères</th>
+                              </tr>
+                            </thead>
+                            <thead>
+                              <tr class="table-info">
+                                <th scope="col">Element</th>
+                                <th scope="col">Longueur</th>
+                                <th scope="col">Affiché</th>
+                                <th scope="col">Tronqué</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>URL</th>
+                                    <td class="url-data">0</td>
+                                    <td class="url-data">0</td>
+                                    <td class="url-data">0</td>
+                                  </tr>
+                              <tr>
+                                <th>Titre</th>
+                                <td class="title-data">0</td>
+                                <td class="title-data">0</td>
+                                <td class="title-data">0</td>
+                              </tr>
+                              <tr>
+                                <th>Description</th>
+                                <td class="meta-data">0</td>
+                                <td class="meta-data">0</td>
+                                <td class="meta-data">0</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-12 p-0 col-md-6">
+                        <table class="table table-hover table-bordered  text-center my-5">
+                            <thead>
+                            <tr class="table-light">
+                                <th scope="col" colspan="3">Pixels</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <thead>
+                            <tr class="table-info">
+                                <th scope="col">Longueur</th>
+                                <th scope="col">Disponible</th>
+                                <th scope="col">Restant</th>
+                                <th scope="col">Statut</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="url-data">0</td>
+                                    <td class="url-data">385</td>
+                                    <td class="url-data">385</td>
+                                    <td class="url-data">0</td>
+                                </tr>
+                            <tr>
+                                <td class="title-data">0</td>
+                                <td class="title-data">600</td>
+                                <td class="title-data">600</td>
+                                <td class="title-data">0</td>
+                            </tr>
+                            <tr>
+                                <td class="meta-data">0</td>
+                                <td class="meta-data">990</td>
+                                <td class="meta-data">990</td>
+                                <td class="meta-data">0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
             </div>
             
@@ -156,8 +205,15 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col">
-
+                    <div class="col-10 mx-auto">
+                        <h4>SERP Preview</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="prev-url" class="py-1"></div>
+                                <div id="prev-title" class="py-1 fs-3 text-primary"></div>
+                                <div id="prev-meta" class="py-1"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
