@@ -56,30 +56,41 @@
     </header>
 
     <main>
-        <div class="container"> 
-            <div class="row">
-                <form action="#">
-                    <div class="row">
-                        <h2 class="text-center my-5">SERP SIMULATOR</h2>
-                        <div class="col-6">
-                            <div class="col my-2">
-                                <label for="inputUrl" class="form-label fw-bold">URL</label>
-                                <textarea name="inputUrl" id="inputUrl" cols="30" rows="2" class="form-control my-1"></textarea>
-                                <p><span class="text-success fw-bold" id="urlPixelsRemind">600</span> pixels disponibles</p>
+        <!--Section input-->
+        <section>
+            <div class="container"> 
+                <div class="row">
+                    <form action="#">
+                        <div class="row">
+                            <h2 class="text-center my-5">SERP SIMULATOR</h2>
+                            <div class="col-6">
+                                <div class="col my-2">
+                                    <label for="inputUrl" class="form-label fw-bold">URL</label>
+                                    <textarea name="inputUrl" id="inputUrl" cols="30" rows="2" class="form-control my-1"></textarea>
+                                    <p><span class="text-success fw-bold" id="urlPixelsRemind">600</span> pixels disponibles</p>
+                                </div>
+                                <div class="col my-2">
+                                    <label for="inputTitle" class="form-label fw-bold">Title</label>
+                                    <textarea name="inputTitle" id="inputTitle" cols="30" rows="2" class="form-control my-1"></textarea>
+                                    <p><span class="text-success fw-bold" id="titlePixelsRemind">600</span> pixels disponibles</p>
+                                </div>
+                                <div class="col my-2">
+                                    <label for="inputTitle" class="form-label fw-bold">Méta-description</label>
+                                    <textarea name="inputMd" id="inputMd" cols="30" rows="2" class="form-control my-1"></textarea>
+                                    <p><span class="text-success fw-bold"  id="mdPixelsRemind">920</span> pixels disponibles</p>
+                                </div>   
                             </div>
-                            <div class="col my-2">
-                                <label for="inputTitle" class="form-label fw-bold">Title</label>
-                                <textarea name="inputTitle" id="inputTitle" cols="30" rows="2" class="form-control my-1"></textarea>
-                                <p><span class="text-success fw-bold" id="titlePixelsRemind">600</span> pixels disponibles</p>
-                            </div>
-                            <div class="col my-2">
-                                <label for="inputTitle" class="form-label fw-bold">Méta-description</label>
-                                <textarea name="inputMd" id="inputMd" cols="30" rows="2" class="form-control my-1"></textarea>
-                                <p><span class="text-success fw-bold"  id="mdPixelsRemind">920</span> pixels disponibles</p>
-                            </div>   
                         </div>
-                    </div>
-                </form>
+                    </form>
+                   
+                </div>
+            </div>
+        </section>
+        <!--Section input END-->
+
+        <!--Section recap-->
+        <section>
+            <div class="container">
                 <div class="row">
                     <table class="table table-hover table-bordered  text-center my-5">
                         <thead>
@@ -109,8 +120,8 @@
                             <td class="title-data">0</td>
                             <td class="title-data">0</td>
                             <td class="title-data">0</td>
-                            <td class="title-data">0</td>
-                            <td class="title-data">0</td>
+                            <td class="title-data">600</td>
+                            <td class="title-data">600</td>
                             <td class="title-data">0</td>
                           </tr>
                           <tr>
@@ -119,8 +130,8 @@
                             <td class="meta-data">0</td>
                             <td class="meta-data">0</td>
                             <td class="meta-data">0</td>
-                            <td class="meta-data">0</td>
-                            <td class="meta-data">0</td>
+                            <td class="meta-data">920</td>
+                            <td class="meta-data">920</td>
                             <td class="meta-data">0</td>
                           </tr>
                           <tr>
@@ -129,15 +140,31 @@
                             <td class="url-data">0</td>
                             <td class="url-data">0</td>
                             <td class="url-data">0</td>
-                            <td class="url-data">0</td>
-                            <td class="url-data">0</td>
+                            <td class="url-data">600</td>
+                            <td class="url-data">600</td>
                             <td class="url-data">0</td>
                           </tr>
                         </tbody>
                       </table>
                 </div>
             </div>
-        </div>
+            
+        </section>
+        <!--Section recap END-->
+
+        <!--Section SERP preview-->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Section SERP preview END-->
+
+        
     </main>
      <!--CDN JS bootstrap-->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
