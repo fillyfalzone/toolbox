@@ -16,19 +16,26 @@ const pronoms = document.getElementById("pronoms");
 const prepostions = document.getElementById("prepostions");
 
 
-function processFormData(event) {
+form.addEventListener("submit", (event) => {
     event.preventDefault();
     let text = textAera.value;
     //On converti tout le texte en lowercase
     text = text.toLowerCase();
-    //On filtre tous les caractères spéciaux et nombres
-    let filteredText = text.replace(/\bh[1-6]\b|-/gi, " ").replace(/[^\w\sÀ-ÖÙ-öÙ-ÿ-œ]|[\d]+(\.\d+)?/gi, " ");
-    console.log(filteredText);
 
+    //Les mots contenus dans ce tableau ne seront pas modifier 
+    let motsExclus = ["Arc-en-ciel", "Porte-monnaie", "Mère-grand", "Beau-père","Belle-mère","Petit-déjeuner", "Chef-d'œuvre", "Couteau-suisse", "Tout-petit", "Fleur-de-lis", 
+    "Bonheur-du-jour", "Hôtel-Dieu"];
+    
+    
+    //On filtre tous les caractères spéciaux et nombres
+    let filteredText = text.replace(/\bh[1-6]\b|-|\r?\n|\t/gi, " ").replace(/[^\w\sÀ-ÖÙ-öÙ-ÿ-œ]|[\d]+(\.\d+)?/gi, " ");   
     // transformer la chaine de caractère en tableau
     let textToArray = filteredText.split(' ');
+
     //supprimer les indices qui sont des espaces
-    textToArray = textToArray.filter(indice => !indice.includes(" "));
+    textToArray = textToArray.filter(function(element) {
+        return element !== "";
+    });
 
 // des modifications à faire pour la suite --------------------
 
@@ -78,87 +85,12 @@ function processFormData(event) {
 
     //filtrer tous les prépositions
     if (prepostions) {
-        let arrayPrepositions = ["à","de","en","avec","pour","sur","sous","dans","contre","vers","hors","après","avant","pendant","sans","jusqu'à","au-delà","derrière","devant","entre","au milieu","autour","à côté","loin de","près de","à l'intérieur","à l'extérieur","au-dessus","au-dessous","au-dessus de","au-dessous de","à gauche","à droite","en haut","en bas","au centre","à l'arrière","à l'avant","à l'intérieur","à l'extérieur","au-dessus","au-dessous","au-dessus de","au-dessous de","à gauche","à droite","en haut","en bas","au centre","à l'arrière","à l'avant","à l'intérieur","à l'extérieur","au-dessus","au-dessous","au-dessus de","au-dessous de","à gauche","à droite","en haut","en bas","au centre","à l'arrière","à l'avant","à l'intérieur","à l'extérieur","au-dessus","au-dessous","au-dessus de","au-dessous de","à gauche","à droite","en haut","en bas","au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au-dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à gauche",
-            "à droite",
-            "en haut",
-            "en bas",
-            "au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au",
-            "dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à gauche",
-            "à droite",
-            "en haut",
-            "en bas",
-            "au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au-dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à",
-            "gauche",
-            "à droite",
-            "en haut",
-            "en bas",
-            "au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au-dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à gauche",
-            "à droite",
-            "en haut",
-            "en bas",
-            "au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au-dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à gauche",
-            "à droite",
-            "en haut",
-            "en bas",
-            "au centre",
-            "à l'arrière",
-            "à l'avant",
-            "à l'intérieur",
-            "à l'extérieur",
-            "au-dessus",
-            "au-dessous",
-            "au-dessus de",
-            "au-dessous de",
-            "à gauche"];
-        //On va nettoyer le tableau de préposition avec la fonction perso clearTable
-        let arrayPrepositionsClear = clearTable(arrayPrepositions);
+        let arrayPrepositions = ["à","de","en","avec","pour", "sur", "sous", "dans", "contre","vers","hors", "après" ,"avant", 
+        "pendant", "sans", "jusqu", "au", "delà", "derrière", "devant", "entre", "milieu", "autour", "côté", "loin", "près", 
+        "l", "intérieur", "extérieur" ,"dessus", "dessou" ,"gauche","droite", "haut", "bas", "centre", "arrière",  "lavant", ""];
+        
         // On filtre tous les prépostion du text
-        textToArray = textToArray.filter(indice => !arrayPrepositionsClear.includes(indice));
+        textToArray = textToArray.filter(indice => !arrayPrepositions.includes(indice));
     }
 
     
@@ -242,9 +174,9 @@ function processFormData(event) {
         tableBody.appendChild(row);
     })
     
-};
+});
 
-form.addEventListener('submit', processFormData); 
+// form.addEventListener('submit', processFormData); 
 
 // Gestionnaire d'événements pour le bouton 'Reset'
 formReset.addEventListener('click', () => {
