@@ -1,5 +1,9 @@
 
-// Récupère les éléments d'entrée pour le titre et le markdown (md) depuis le DOM
+/**
+ * Bienvue dans le code source de SERP SIMULATOR
+*/
+
+// Récupère les éléments du DOM pour pouvoir les modifier dynamiquement
 const inputTitle = document.getElementById("inputTitle");
 const totalTitlePixels = document.getElementById("titlePixelsRemind");
 const inputMd = document.getElementById("inputMd");
@@ -7,16 +11,13 @@ const totalMdPixels = document.getElementById("mdPixelsRemind");
 const inputUrl = document.getElementById("inputUrl");
 const totalUrlPixels = document.getElementById("urlPixelsRemind");
 
-
-
-
-// Création d'un élément canvas unique pour la mesure du texte
+// Création d'un élément canvas unique pour la mesure des caractère en pixel
 const canvas = document.createElement('canvas');
+// Initialisation du contexte du canvas ici en 2 demensions
 const ctx = canvas.getContext('2d');
 
-
-// Fonction pour calculer la largeur du texte en pixels
-function calculateTextWidth(text, tag) {
+// Fonction pour calculer la largeur d'un caractère en fonction des Tags (qui on des font-zises différentes) en pixels
+function calculateTextWidth(character, tag) {
     if (tag === "title") {
         ctx.font = '20px arial';
     } else if (tag === "meta") {
@@ -25,7 +26,7 @@ function calculateTextWidth(text, tag) {
         ctx.font = '16px arial';
     }
 
-    return ctx.measureText(text).width;
+    return ctx.measureText(character).width;
 }
 
 // Fonction générique pour gérer les événements d'entrée
@@ -69,7 +70,7 @@ function handleInput(inputElement, totalPixelsElement, maxPixels, tag) {
 
     /*Partie SERP preview*/
     //On recupère les éléments du DOM
-    let preview = document.getElementById("prev-" + tag);
+    let preview = document.querySelector(".prev-" + tag);
     preview.innerText = characters;
 
     /*Tronquer les titre en cas de depassement du nombre de pixels*/
@@ -84,26 +85,39 @@ function handleInput(inputElement, totalPixelsElement, maxPixels, tag) {
         preview.innerText = trimmedText;
     }
 
-    // Rendre dynamique le texte de recommandation 
+    /**
+        * Rendre dynamique le texte des recommandations 
+    */  
+   //On initialise les éléments du DOM
     let small = document.getElementById("small-" + tag);
-    let span = document.getElementById("span-" + tag);
 
+    // Ici on personnalise la recommandation  en fonction de longueur du texte contenu dans l'input (title ou MD) 
     switch (tag)
     {
         case "title":
             if (width < 285) {
-                span.style.color ="#f00";
-                span.innerText = "Attention votre Titre est trop court.";
-                small.innerText = "Sa longueur est faible, pensez à exploiter davantage la longueur disponible..";
+                small.innerText = "La longueur du Title faible, pensez à exploiter d'avantage la longueur.";
+                small.style.color = "orange";
             } else if(width > 600) {
-                span.style.color ="#f00";
-                span.innerText = "Attention votre Titre est trop long.";
-                small.innerText = "l’intégralité de votre balise ne s’affichera pas, songez à la raccourcir";
+                small.innerText = "Le titre est trop long, l’intégralité de son contenu ne s’affichera pas, songez à la raccourcir";
+                small.style.color = "red";
             } else {
-                span.style.color ="#0f0";
-                span.innerText = "Félicitation, votre Titre est d’une bonne longueur.";
-                small.innerText = "Veillez à ce que son contenu soit pertinent par rapport à la page.";
+                small.innerText = "Votre Title est de bonne longueur, veillez à la pertinence de son contenu";
+                small.style.color = "green";
             }
+        break;
+        case "meta":
+            if (width < 500) {
+                small.innerText = "La longueur de la Méta-Description faible, pensez à exploiter d'avantage la longueur.";
+                small.style.color = "orange";
+            } else if(width > 990) {
+                small.innerText = "La Méta-Description est trop long, l’intégralité de son contenu ne s’affichera pas, songez à la raccourcir";
+                small.style.color = "red";
+            } else {
+                small.innerText = "Votre Méta-Description est de bonne longueur, veillez à la pertinence de son contenu";
+                small.style.color = "green";
+            }
+        break;
 
     }
 }

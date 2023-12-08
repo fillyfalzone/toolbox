@@ -3,11 +3,10 @@
 
 const form = document.getElementById("form");
 const name = document.getElementById("projectName");
-const textAera = document.getElementById("textAera");
+const textArea = document.getElementById("textArea");
 const wordSup = document.getElementById("wordSup");
 const submit = document.getElementById("submit");
 const formReset = document.getElementById("formReset");
-
 
 const special_char = document.getElementById("special-char");
 const articles = document.getElementById("articles");
@@ -15,34 +14,49 @@ const conjonctions = document.getElementById("conjonctions");
 const pronoms = document.getElementById("pronoms");
 const prepostions = document.getElementById("prepostions");
 
-
+/**
+ * Ecouteur d'évènément à la soumission du formulaire
+ */
 form.addEventListener("submit", (event) => {
+    //cette methode permet d'annuler les paramettre par defaut de l'élément auquel la fonction sera appelé
     event.preventDefault();
-    let text = textAera.value;
-    //On converti tout le texte en lowercase
+    let text = textArea.value;
+    /**
+        * Debut du traitement du texte 
+     */
+
+    //On converti tout le texte en lowercase (minuscle) pour ne pas subir la casse sensitive
     text = text.toLowerCase();
 
     //Les mots contenus dans ce tableau ne seront pas modifier 
-    let motsExclus = ["Arc-en-ciel", "Porte-monnaie", "Mère-grand", "Beau-père","Belle-mère","Petit-déjeuner", "Chef-d'œuvre", "Couteau-suisse", "Tout-petit", "Fleur-de-lis", 
+    let motsExclus = ["Arc-en-ciel", "Porte-monnaie", "Mère-grand", "grand-mère","grand-mères", "grand-père", "grand-père", "belle-soeur", "beau-frère", "Beau-père","Belle-mère","Petit-déjeuner", "Chef-d'œuvre", "Couteau-suisse", "Tout-petit", "Fleur-de-lis", 
     "Bonheur-du-jour", "Hôtel-Dieu"];
     
     
-    //On filtre tous les caractères spéciaux et nombres
-    let filteredText = text.replace(/\bh[1-6]\b|-|\r?\n|\t/gi, " ").replace(/[^\w\sÀ-ÖÙ-öÙ-ÿ-œ]|[\d]+(\.\d+)?/gi, " ");   
-    // transformer la chaine de caractère en tableau
+    //Avec la methothe replace() et la regex on remplace tout (1h à 6h), les tirets entre les mots, les sauts de ligne, les nombre (! les mots comme H2O ne seront pas affecté),
+    // Les caractères spéciauc (@ : / ? . , etc...) par des espaces 
+    let filteredText = text.replace(/\bh[1-6]\b|-|\r?\n|\t/gi, " ").replace(/[^\w\sÀ-ÖÙ-öÙ-ÿ-œ]|[\d]+(\.\d+)?/gi, " "); 
+
+    // transformer le texte en tableau, la separation se fait au niveau des espaces.
     let textToArray = filteredText.split(' ');
 
-    //supprimer les indices qui sont des espaces
+    //supprimer les indices vides créés par les éléments remplacés plus haut 
     textToArray = textToArray.filter(function(element) {
         return element !== "";
     });
 
-// des modifications à faire pour la suite --------------------
+    /**
+     * On va passer au liste des mots et expressions superflus 
+     */
 
-    // Filtrer tous les articles
+    // Filtrer tous les articles et les lettres orphelines provoqué par (l', s', c')
     if (articles.checked) {
-        let articles = ["le","la","les","un","une","des","du","de","d","l","au","aux","à","c","s"];
-        textToArray  = textToArray.filter(indice => !articles.includes(indice)); 
+        let articles = ["le","la","les","un","une","des","uns", "unes","du","de","d","l","c","s","n"];
+        /**
+            * Ce code en filtre les éléments d'un tableau en supprimant ceux qui sont présents dans un autre tableau.
+            * Raison pour laquelle on utilise le (not "!") pour inverser la fonction
+        */
+        textToArray = textToArray.filter(indice => !articles.includes(indice)); 
     } 
 
     //filtrer tous les conjonctions de coordination et subordination
@@ -58,9 +72,9 @@ form.addEventListener("submit", (event) => {
     //filtrer tous les pronoms
     if (pronoms.checked) {
         
-        let pronomsDemonstratif = ["ce","cette","ces", "ceci", "cela", "celui", "celui-ci", "celui-là", "celle", "celle-ci", "celle-là", "celles", "celles-ci", "celles-là", "ceux", "ceux-ci", "ceux-là", "chacun", "chacune", "chaque"];
+        let pronomsDemonstratif = ["ce","cet", "cette","ces", "ceci", "cela", "celui", "celui","ci", "là", "celle", "celle", "celles", "ceux", "chacun", "chacune", "chaque"];
 
-        let pronomsIndefini = ["un", "une", "des", "du", "la", "le", "les", "l'", "un", "une", "des", "du", "la", "le", "les", "l'","l"];
+        let pronomsIndefini = ["un", "une", "des", "du", "la", "le", "les", "l'", "un", "une", "des", "du", "la", "le", "les","l"];
 
         let pronomsPersonnel = ["j'", "je", "tu", "il", "elle", "on", "nous", "vous", "ils", "elles", "je", "tu", "il", "elle", "on", "nous", "vous", "ils", "elles"];
 
@@ -68,17 +82,14 @@ form.addEventListener("submit", (event) => {
 
         let pronomsReflexif = ["me", "te", "se"];
 
-        let pronomsInterrogatif = ["qui", "quoi", "où", "quand", "comment", "pourquoi", "quel", "quelle", "quels", "quelles", "quelque", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quelque chose", "quel"];
+        let pronomsInterrogatif = ["qui", "quoi", "où", "quand", "comment", "pourquoi", "quel", "quelle", "quels", "quelles", "quelque", "chose", "choses"];
 
-        let determinantsIndefinis = ["quelques", "plusieurs", "plusieurs", "quelques-uns", "quelques-unes", "plusieurs", "plusieurs", "beaucoup", "peu", "assez", "tant", "trop", "tout", "tous", "toute", "toutes"]
+        let determinantsIndefinis = ["quelques", "plusieurs", "uns", "unes", "beaucoup", "peu", "assez", "tant", "trop", "tout", "tous", "toute", "toutes"]
 
-        let bazar = ["alors" , "au" , "aucun" , "aucune" , "aussi" , "autre" , "autres" , "aux" , "avant" , "avec" , "avoir" , "bon" , "lorsque", "par", "pour", "plus", "h", "qu", "ne", "chez", "ainsi", "le"];
+        let bazar = ["alors" , "au" , "aucun" , "aucune" , "aussi" , "autre" , "autres" , "aux" , "avant" , "avec" , "avoir" , "bon" , "lorsque", "par", "pour", "plus", "h", "qu", "ne", "chez", "ainsi"];
         // On concataine tous les tableaux des pronoms
         let arrayPronoms = pronomsDemonstratif.concat(pronomsIndefini).concat(pronomsPersonnel).concat(pronomsPossessif).concat(pronomsReflexif).concat(pronomsInterrogatif).concat(determinantsIndefinis).concat(bazar);
         
-        //On va cleaner le tableau des pronoms
-        arrayPronoms = clearTable(arrayPronoms);
-
         //On filtre tous les pronoms du texte
         textToArray = textToArray.filter(indice => !arrayPronoms.includes(indice));
     }
@@ -87,32 +98,27 @@ form.addEventListener("submit", (event) => {
     if (prepostions) {
         let arrayPrepositions = ["à","de","en","avec","pour", "sur", "sous", "dans", "contre","vers","hors", "après" ,"avant", 
         "pendant", "sans", "jusqu", "au", "delà", "derrière", "devant", "entre", "milieu", "autour", "côté", "loin", "près", 
-        "l", "intérieur", "extérieur" ,"dessus", "dessou" ,"gauche","droite", "haut", "bas", "centre", "arrière",  "lavant", ""];
+        "l", "intérieur", "extérieur" ,"dessus", "dessou" ,"gauche","droite", "haut", "bas", "centre", "arrière",  "lavant"];
         
         // On filtre tous les prépostion du text
         textToArray = textToArray.filter(indice => !arrayPrepositions.includes(indice));
     }
 
     
-
     //On va filter les mots supplémentaire ajoutés manuellement
     if (wordSup !== null) {
         // On mettre les mots sup dans un tableau
         let arrayWordSup = wordSup.value.split(' ');
 
         textToArray = textToArray.filter(indice => !arrayWordSup.includes(indice));
-        
     }
-
-    // On nettoye le tableau final
-    textToArray = clearTable2(textToArray);
-
-    document.getElementById("table-body").innerHTML = ''; // Effacer le contenu du tableau
-
 
     /*
         *Affichage des différents resultats
     */
+
+    // On recupère le body du tableau recapitulatif dans le DOM
+    document.getElementById("table-body").innerHTML = ''; // Effacer le contenu du tableau
 
     // Declaration des variables lier aux noeds du DOM
     const ranking = document.getElementById("ranking").value * 1;
@@ -126,12 +132,12 @@ form.addEventListener("submit", (event) => {
 
     //Le nombre de mots avant Filtrage
     const totalWordsBefore = document.getElementById("totalWordsBefore");
-    totalWordsBefore.innerText = textAera.value.split(' ').length + " Mots"; 
+    totalWordsBefore.innerText = textArea.value.split(' ').length + " Mots"; 
 
     // Total de mots filtrés
 
     const totalWordFiltered = document.getElementById("totalWordFiltered");
-    totalWordFiltered.innerText = (textAera.value.split(' ').length - totalWords) + " Mots" 
+    totalWordFiltered.innerText = (textArea.value.split(' ').length - totalWords) + " Mots" 
     
     // On va compter les occurence de chaque mots 
     let wordCounts = {};
@@ -176,56 +182,13 @@ form.addEventListener("submit", (event) => {
     
 });
 
-// form.addEventListener('submit', processFormData); 
 
 // Gestionnaire d'événements pour le bouton 'Reset'
 formReset.addEventListener('click', () => {
-    textAera.value = ''; // Réinitialiser le contenu du textarea
+    textArea.value = ''; // Réinitialiser le contenu du textarea
     wordSup.value = '';
     form.reset(); // Réinitialiser les autres champs du formulaire
     document.getElementById("table-body").innerHTML = ''; // Effacer le contenu du tableau
 });
 
 
-     
-// On va créer une fonction pour nettoyer le tableau de prépostions
-function clearTable (table) {
-    //convertir le tableau en string
-    let tableToString = table.join(' ');
-    
-    //supprimer tout les tirets et apostrophes 
-    let clear = tableToString.replace(/[-']/g, ' ');
-
-    //diviser la chaine de caractère en mots au niveau des espaces et convertir en tableau
-    let words = clear.split(' ');
-
-    //on va supprimer tout les doublons en utilisant un Set
-    let uniqueWords = new Set(words);
-
-    //on converti en un tableau et on join 
-    let newTable = Array.from(uniqueWords);
-    //On supprime tout les indices vides
-    let outerTable = newTable.filter(indice => indice.trim() !== '');
-
-    return outerTable;
-}  
-
-// Cleaner les tableaux sans supprimer les mots doublons
-
-function clearTable2 (table) {
-    //convertir le tableau en string
-    let tableToString = table.join(' ');
-    
-    //supprimer tout les tirets et apostrophes 
-    let clear = tableToString.replace(/[-']/g, ' ');
-
-    //diviser la chaine de caractère en mots au niveau des espaces et convertir en tableau
-    let words = clear.split(' ');
-
-    //on converti en un tableau et on join 
-    let newTable = Array.from(words);
-    //On supprime tout les indices vides
-    let outerTable = newTable.filter(indice => indice.trim() !== '');
-
-    return outerTable;
-}  

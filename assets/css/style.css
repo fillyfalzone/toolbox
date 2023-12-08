@@ -1,3 +1,69 @@
+
+/*
+    *Index
+*/
+
+/*TopBar*/
+.logo {
+    width: 200px;
+    display: flex;
+    align-items: baseline;
+}
+
+.logo p {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #c82876;
+}
+
+.logo p span {
+    color: #5329a8;
+}
+
+
+/* Nav bar*/
+
+.navbar svg {
+    fill: #5329a8;
+}
+
+.navbar svg:hover {
+    fill: #c82876 ;
+}
+
+.nav-item  a {   
+    color: #5329a8 !important;
+}
+.nav-item  a:hover {   
+    color: #c82876 !important;
+}
+
+.nav-item {
+    position: relative;
+}
+.nav-item a::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #c82876;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: all .3s;
+}
+
+.nav-item:hover a::before {
+    width: 100%;
+    transform: translateX(-50%);
+    transition: all .3s;
+}
+
+
 /*Page Simulateur*/
 /* modification de la police*/
 #prev-url{
@@ -13,3 +79,5 @@
     font-size: 14px !important;
     font-family: arial, sans-serif !important;
 }
+
+/*footer*/
